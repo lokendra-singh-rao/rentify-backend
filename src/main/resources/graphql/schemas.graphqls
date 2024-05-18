@@ -1,0 +1,69 @@
+schema {
+	query : Query
+	mutation : Mutation
+}
+
+type Query {
+	signInUser : String
+	getUserData : UserDetailsModel
+	getSellerProperties : [PropertyDetailsModel]
+	getAllProperties : [PropertyDetailsModel]
+}
+
+type Mutation {	
+    signUpUser(userDetailsModel : UserDetailsModelInput) : String
+    addProperty(propertyDetailsModel : PropertyDetailsModelInput) : [PropertyDetailsModel]
+    deleteProperty(id : String!) : [PropertyDetailsModel]
+    editProperty(propertyDetailsModel : PropertyDetailsModelInput) : [PropertyDetailsModel]
+    getSellerInfo(id : String!) : SellerInfoModel
+}
+
+type UserDetailsModel {
+    uid : String
+    fullname : String
+    email : String
+    phone : String
+    role : Role
+    lastLogin : String
+    createdAt : String
+}
+
+input UserDetailsModelInput {
+    fullname : String
+    email : String
+    phone : String
+    role : Role
+}
+
+type PropertyDetailsModel {
+    id : String
+    sellerId : String
+    area : Float
+    place : String
+    bedrooms : Int
+    bathrooms : Int
+    nearbyPlaces : String
+    rent : Float
+    createdAt : String
+    
+}
+
+input PropertyDetailsModelInput {
+    area : Float
+    place : String
+    bedrooms : Int
+    bathrooms : Int
+    nearbyPlaces : String
+    rent : Float
+}
+
+type SellerInfoModel {
+	fullname : String
+	email : String
+	phone : String
+}
+
+enum Role {
+	SELLER
+	BUYER
+}
